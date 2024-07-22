@@ -1,0 +1,42 @@
+<?php 
+
+function whatsapp_share($title){
+	$cleaned_string = string_clean($title);
+	$final_title = str_replace(" ", "+", $cleaned_string);
+	$final_title = "https://web.whatsapp.com/send?text=*$final_title*%0A%0A" . base_url();
+
+	return $final_title;
+}
+
+function generateFacebookShareUrl($url) {
+    $facebookShareUrl = "https://www.facebook.com/sharer.php?u=".base_url();
+    return $facebookShareUrl;
+}
+
+function generateTwitterShareUrl($title, $url){
+	// Gantikan spasi dengan %20
+    $encoded_title = urlencode($title);
+
+    // URL halaman yang ingin dibagikan
+    $page_url = base_url();
+
+    // Buat URL untuk Twitter
+    $twitterUrl = "https://twitter.com/intent/tweet?url=$page_url&text=$encoded_title";
+
+	return $twitterUrl;
+}
+
+function whatsapp_url($params) {
+    $url = base_url() . "?utm_medium=sosmed&utm_source=whatsapp";
+    $encodedUrl = urlencode($url);
+	$encodedUrl = $encodedUrl . "%0D%0A%0D%0A" . base_url();
+    return $encodedUrl;
+}
+
+function string_clean($string) {
+    $cleanedString = preg_replace('/[^\p{L}\p{N}\s]/u', '', $string);
+
+    return $cleanedString;
+}
+
+?>

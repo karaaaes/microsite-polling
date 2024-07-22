@@ -1,0 +1,12 @@
+<?php
+
+use CodeIgniter\Router\RouteCollection;
+
+/**
+ * @var RouteCollection $routes
+ */
+$routes->get('/', 'Home::index');
+$routes->post('/sendform', 'Home::sendForm');
+$routes->get('/success', 'Home::success');
+$routes->get('/export/csv', 'Home::exportCsv');
+$routes->post('/polling/survey/checkEmail', 'Survey::checkEmail');
